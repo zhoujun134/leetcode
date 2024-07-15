@@ -11,8 +11,8 @@ public class PrintUtil {
      */
     public static void printIntArray(int[] arr){
         System.out.println("============ 打印整型数组 start ==================");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(" "+ arr[i]);
+        for (int j : arr) {
+            System.out.print(" " + j);
         }
         System.out.println();
         System.out.println("============= 打印整型数组 end ===================");

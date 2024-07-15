@@ -1,46 +1,54 @@
 package com.zj.datastruct.sort;
-
-import com.zj.datastruct.sort.util.PrintUtil;
-
 /**
  * @Author: zhoujun
  * @Date: 2021/3/8 18:53
  * @Description: 快速排序
  */
 public class QuickSort {
-
-    public static void quickSort(int[] arr, int low, int high) {
-        int temp;
-        int i = low, j = high;
-        if (low >= high) {
+    public static void quickSort(int[] arr, int left, int right) {
+        if (left >= right) {
             return;
         }
-        temp = arr[low];
+        int temp = arr[left];
+        int i = left, j = right;
         while (i < j) {
-            while (j > i && arr[j] >= temp) --j;
+            while (i < j && arr[j] >= temp) {
+                j--;
+            }
             if (i < j) {
                 arr[i] = arr[j];
                 ++i;
             }
-            while (i < j && arr[i] < temp) ++i;
-            if (i < j) {
+            while (i < j && arr[i] <= temp) {
+                i++;
+            }
+            if (i <= j) {
                 arr[j] = arr[i];
-                --j;
+                j--;
             }
             arr[i] = temp;
-            quickSort(arr, low, i - 1);
-            quickSort(arr, i + 1, high);
+            quickSort(arr, left, i - 1);
+            quickSort(arr, i + 1, right);
         }
     }
 
     public static void main(String[] args) {
 
-        int[] arr = {1, 2, 2332, 21, 45, 67878, 12};
+        int[] arr = {6, 1, 2, 7, 9, 3, 4, 5, 10, 8};
         System.out.println("排序之前：");
-        PrintUtil.printIntArray(arr);
+        printIntArray(arr);
 
         quickSort(arr, 0, arr.length - 1);
         System.out.println("排序之后：");
-        PrintUtil.printIntArray(arr);
+        printIntArray(arr);
+    }
+
+    public static void printIntArray(int[] arr){
+        System.out.println("============ 打印整型数组 start ==================");
+        for (int j : arr) {
+            System.out.print(" " + j);
+        }
+        System.out.println();
+        System.out.println("============= 打印整型数组 end ===================");
     }
 }

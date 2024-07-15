@@ -74,8 +74,9 @@ public class InsertSort {
                     flage = 1;
                 }
             }
-            if (flage == 0) break;
-
+            if (flage == 0) {
+                break;
+            }
         }
     }
 

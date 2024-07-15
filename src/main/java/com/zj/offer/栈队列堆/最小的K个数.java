@@ -62,7 +62,7 @@ public class 最小的K个数 {
         for (int i = 0; i < arr.length; i++) {
             arr2[i] = arr[i];
         }
-        quickSqrt2(arr2, 0, arr2.length - 1);
+        quickSqrt(arr2, 0, arr2.length - 1);
         return arr2;
     }
 
