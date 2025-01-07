@@ -1,19 +1,70 @@
 package com.zj.offer.other;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import test.util.GsonUtils;
+
+import java.util.*;
 
 public class 表达式求值 {
     public static void main(String[] args) {
 //        String s1 = "3+2*3*4-1";
         String str = "5+2*3+(7+4)";
+
+        System.out.println(computePostfixExpression2(str));
 //        String str = "5+2*3/4+(6/2+3)";
         String postfixExpression = getPostfixExpression(str);
+        System.out.println(postfixExpression);
         Double result = computePostfixExpression(postfixExpression);
         System.out.println("result: " + result);
     }
+
+
+    public static String computePostfixExpression2(String postfixExpression) {
+        char[] charArray = postfixExpression.toCharArray();
+        List<String> opts = Arrays.asList("+", "-", "*", "/", "(", ")");
+        Stack<String> operation = new Stack<>();
+        StringBuilder result = new StringBuilder();
+        // 1+ (( 2+3) * 4) -5
+        for (char curChar : charArray) {
+            String curCharString = String.valueOf(curChar);
+            if (opts.contains(curCharString)) {
+                if ("(".equals(curCharString)) {
+                    operation.push(curCharString);
+                } else if (")".equals(curCharString)) {
+                    while (!operation.isEmpty() && !operation.peek().equals("(")) {
+                        result.append(operation.pop());
+                    }
+                    operation.pop();
+                } else {
+                    // 加减剩除
+                    if ("*".equals(curCharString) || "/".equals(curCharString)) {
+                        if (!operation.isEmpty()
+                                && (operation.peek().equals("/")
+                                || operation.peek().equals("*"))) {
+                            result.append(operation.pop());
+                        }
+                        operation.push(curCharString);
+                    } else if ("+".equals(curCharString) || "-".equals(curCharString)) {
+                        if (!operation.isEmpty()
+                                && (operation.peek().equals("/")
+                                || operation.peek().equals("*")
+                                || operation.peek().equals("+")
+                                || operation.peek().equals("-"))) {
+                            result.append(operation.pop());
+                        }
+                        operation.push(curCharString);
+                    }
+                }
+            } else {
+                result.append(curCharString);
+            }
+        }
+        while (!operation.isEmpty()) {
+            result.append(operation.pop());
+        }
+
+        return result.toString();
+    }
+
 
     /**
      * 顺序扫描表达式的每一项，然后根据他的类型做如下相应操作：

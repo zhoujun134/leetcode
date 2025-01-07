@@ -88,6 +88,22 @@ public class TreeNodeUtils {
         return ret;
     }
 
+    public static List<Integer> middleTraverse3(TreeNode root) {
+        TreeNode cur = root;
+        Stack<TreeNode> headerList = new Stack<>();
+        List<Integer> result = new ArrayList<>();
+        while (cur !=null || !headerList.isEmpty()) {
+            while (cur != null) {
+                headerList.push(cur);
+                cur = cur.left;
+            }
+            cur = headerList.pop();
+            result.add(cur.val);
+            cur = cur.right;
+        }
+        return result;
+    }
+
     public static void prefaceTraverse(TreeNode root) {
         if (root == null) {
             return;
@@ -160,11 +176,11 @@ public class TreeNodeUtils {
      */
     public static TreeNode buildBSTree(int[] midleArr) {
         TreeNode root = null;
-        for (int i = 0; i < midleArr.length; i++) {
-            if (midleArr[i] == -1) {
+        for (int j : midleArr) {
+            if (j == -1) {
                 continue;
             }
-            buildBiTree(root, midleArr[i]);
+            buildBiTree(root, j);
         }
 
         return root;
@@ -371,7 +387,16 @@ public class TreeNodeUtils {
 
     public static void main(String[] args) {
         TreeNode root = createTestTree();
-
-        afterTraverse2(root).forEach(System.out::println);
+        System.out.println("前序遍历===> ");
+        prefaceTraverse(root);
+        System.out.println();
+        System.out.println("中序遍历===> ");
+        middleTraverse(root);
+        System.out.println();
+        middleTraverse3(root).forEach(System.out::println);
+        System.out.println("后序遍历===> ");
+        afterTraverse(root);
+        System.out.println();
+        // afterTraverse2(root).forEach(System.out::println);
     }
 }

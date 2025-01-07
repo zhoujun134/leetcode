@@ -40,9 +40,8 @@ public class S_LeetCode1668 {
      * 方法二
      * KMP 算法 + 动态规划
      * 方法一的数组 valid 本质上就是标记了字符串 word 在字符串 sequence 中所有出现的位置。
-     *     而我们可以使用更高效的 KMP 算法 在 O(m+n) 的时间内得到数组 valid。
-     *     对于 KMP 算法本身，本篇题解不再赘述，感兴趣的读者可以自行通过链接进行学习。
-     *
+     * 而我们可以使用更高效的 KMP 算法 在 O(m+n) 的时间内得到数组 valid。
+     * 对于 KMP 算法本身，本篇题解不再赘述，感兴趣的读者可以自行通过链接进行学习。
      */
     public static int maxRepeating2(String sequence, String word) {
         int sequenceLength = sequence.length(), wordLength = word.length();

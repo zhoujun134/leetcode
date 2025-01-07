@@ -35,7 +35,30 @@ public class M_LeetCode3 {
 
     }
 
+
+    public static int lengthOfLongestSubstring2(String s) {
+        int length = s.length();
+        int curMaxLength = 0;
+        Set<Character> characterSet = new HashSet<>();
+        for (int i = 0; i < length; i++) {
+            characterSet.clear();
+            char curChar = s.charAt(i);
+            characterSet.add(curChar);
+            int k = i + 1;
+            while (k < length && !characterSet.contains(s.charAt(k))) {
+                characterSet.add(s.charAt(k));
+                k++;
+            }
+            int tempMaxLength = k - i;
+            if (curMaxLength < tempMaxLength) {
+                curMaxLength = tempMaxLength;
+            }
+        }
+        return curMaxLength;
+
+    }
+
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("abcabcabc"));
+        System.out.println(lengthOfLongestSubstring2("abcabcabc"));
     }
 }
