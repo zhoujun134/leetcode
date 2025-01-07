@@ -88,16 +88,25 @@ public class TreeNodeUtils {
         return ret;
     }
 
+    /**
+     * 核心思想 左跟右
+     *        需要先访问左子树，再回退到根节点，再访问根节点的右子树，
+     *        这里的一个难点是从左子树回退到根节点的操作，
+     *        虽然可以用栈来实现回退，但是要注意在出栈时保存根节点的引用，
+     *        因为我们还需要通过根节点来访问右子树：
+     * @param root
+     * @return
+     */
     public static List<Integer> middleTraverse3(TreeNode root) {
         TreeNode cur = root;
         Stack<TreeNode> headerList = new Stack<>();
         List<Integer> result = new ArrayList<>();
         while (cur !=null || !headerList.isEmpty()) {
             while (cur != null) {
-                headerList.push(cur);
-                cur = cur.left;
+                headerList.push(cur); // 添加根节点
+                cur = cur.left; // 循环添加左节点
             }
-            cur = headerList.pop();
+            cur = headerList.pop(); // 当前栈顶已经是最底层的左节点了，取出栈顶元素，访问该节点。
             result.add(cur.val);
             cur = cur.right;
         }
