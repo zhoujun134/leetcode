@@ -46,18 +46,18 @@ public class 二叉树根节点到叶子节点和为指定值的路径 {
 
     public static void pathCompute(TreeNode root, int sum,
                                    List<Integer> path,
-                                   List<List<Integer>> result){
-        if (root == null){
+                                   List<List<Integer>> result) {
+        if (root == null) {
             return;
         }
         sum -= root.val;
         path.add(root.val);
-        if (root.left == null && root.right == null){
-            if (sum == 0){
+        if (root.left == null && root.right == null) {
+            if (sum == 0) {
                 result.add(new ArrayList<>(path));
             }
 
-        }else {
+        } else {
             pathCompute(root.left, sum, path, result);
             pathCompute(root.right, sum, path, result);
         }

@@ -29,7 +29,7 @@ public class 二叉树的层次遍历 {
             ArrayList<Integer> resOne = new ArrayList<>();
             while (size-- != 0) {
                 TreeNode temp = quee.poll();
-                if (temp != null){
+                if (temp != null) {
                     resOne.add(temp.val);
                 }
                 if (temp != null && temp.left != null) {
@@ -43,7 +43,7 @@ public class 二叉树的层次遍历 {
              * git a ds a da  da
              * this is zj1
              */
-            if (resOne.size() > 0) {
+            if (!resOne.isEmpty()) {
                 result.add(resOne);
             }
             /**
@@ -54,22 +54,21 @@ public class 二叉树的层次遍历 {
     }
 
 
-
     public static ArrayList<ArrayList<Integer>> levelOrder2(TreeNode root) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        if(root != null){
+        if (root != null) {
             Queue<TreeNode> queue = new LinkedList<>();
             queue.offer(root);
-            while(!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 int size = queue.size();
                 //遍历的时候加入结果集合也是可以的，而且更简便
                 ArrayList<Integer> newLevel = new ArrayList<Integer>();
-                for(int i=0; i<size; i++){
+                for (int i = 0; i < size; i++) {
                     TreeNode temp = queue.poll();
                     newLevel.add(temp.val);
-                    if(temp.left != null)
+                    if (temp.left != null)
                         queue.offer(temp.left);
-                    if(temp.right != null)
+                    if (temp.right != null)
                         queue.offer(temp.right);
                 }
                 result.add(newLevel);

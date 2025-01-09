@@ -22,7 +22,7 @@ public class 在二叉树中找到两个节点的最近公共祖先 {
         System.out.println();
         System.out.println("中序遍历");
         TreeNodeUtils.middleTraverse(root);
-        System.out.println("===> " + getSameTreeNode(root, 6, 8).val);
+        System.out.println("===> " + getSameTreeNode(root, 7, 4).val);
 
     }
 

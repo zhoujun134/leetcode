@@ -14,7 +14,9 @@ public class 最多删除一个字符使其成为回文串 {
 
     // 最多删除一个字符，使其变成回文串
     public static boolean isPalindromeByDeleteOneCharater(String str) {
-        if (str.length() < 3) return true;
+        if (str.length() < 3) {
+            return true;
+        }
         char[] ch = str.toCharArray();
         int i = 0, j = ch.length - 1;
 
