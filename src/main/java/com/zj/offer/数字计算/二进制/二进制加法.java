@@ -8,7 +8,7 @@ public class 二进制加法 {
 
     private static String addBinary(String a, String b) {
         int aIndex = a.length() - 1;
-        int bIndex = b.length() -1;
+        int bIndex = b.length() - 1;
         StringBuilder result = new StringBuilder();
         int needAddOne = 0;
         while (aIndex >= 0 || bIndex >= 0) {
